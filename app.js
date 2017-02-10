@@ -17,4 +17,4 @@ var songView = new SongView({
     model: song
 });
 
-song.render();
+songView.render();
