@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello, Backbone</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
-
+    <script data-main='assets/js/common' src='assets/js/lib/require.js'></script>
 </head>
 
 <body>
-    <ul id="songs"></div>
-    <script src="app.js"></script>
+    <ul id="songs">
+        </div>
+        <script>
+            require(['common'], function () {
+                require(['app']);
+            })
+        </script>
+
 </body>
 
 </html>
