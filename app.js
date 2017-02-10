@@ -1,14 +1,26 @@
-var Song = Backbone.Model.extend();
+var Song = Backbone.Model.extend({
+    defaults: {
+        listeners: 0
+    }
+});
 var Playlist = Backbone.Collection.extend({
     model: Song
 });
 
 var SongView = Backbone.View.extend({
+    tagName: 'li',
     initialize: function () {
         this.render();
+        this.model.on('change', this.render, this);
+    },
+    events:{
+        'click button.playButton': 'onclickPlay'
+    },
+    onclickPlay: function(){
+        console.log('Click!');
     },
     render: function () {
-        this.$el.html(this.model.get('title'));
+        this.$el.html(this.model.get('title') + " <button class='playButton'>Play</button><span> Listeners: "+ this.model.get('listeners')+ "</span>");
         return this;
     }
 });
@@ -18,7 +30,7 @@ var SongsView = Backbone.View.extend({
     },
     render: function () {
         var self = this;
-        this.model.each(function(song){
+        this.model.each(function (song) {
             var songView = new SongView({
                 model: song
             });
@@ -26,11 +38,9 @@ var SongsView = Backbone.View.extend({
         });
     }
 });
-
-
 var songs = new Playlist([
     new Song({
-        title: 'A stairway to heaven'
+        title: 'A stairway to heaven',
     }),
     new Song({
         title: 'Knocking heaven door'
@@ -40,7 +50,7 @@ var songs = new Playlist([
     }),
 ]);
 var listView = new SongsView({
-    el: '#container',
+    el: '#songs',
     model: songs
 });
 
