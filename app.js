@@ -1,9 +1,9 @@
 var Song = Backbone.Model.extend();
 var SongView = Backbone.View.extend({
-    initialize: function(){
+    initialize: function () {
         this.render();
     },
-    render: function(){
+    render: function () {
         this.$el.html("Hello, world!!!");
         return this;
     }
@@ -12,5 +12,5 @@ var SongView = Backbone.View.extend({
 var song = new SongView({
     el: '#container'
 });
-    
+
 song.render();
