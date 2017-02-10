@@ -4,13 +4,17 @@ var SongView = Backbone.View.extend({
         this.render();
     },
     render: function () {
-        this.$el.html("Hello, world!!!");
+        this.$el.html(this.model.get('title'));
         return this;
     }
 });
 
-var song = new SongView({
-    el: '#container'
+var song = new Song({
+    title: 'Stairway to Heaven'
+});
+var songView = new SongView({
+    el: '#container',
+    model: song
 });
 
 song.render();
